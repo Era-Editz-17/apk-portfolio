@@ -302,9 +302,14 @@ body {
 
 /* APK Cards Grid */
 .apps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.apps-grid .app-card {
+  max-width: 680px;
+  width: 100%;
 }
 .app-card {
   background: var(--bg-card);
