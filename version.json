@@ -1,0 +1,10 @@
+{
+  "latestVersionCode": 1,
+  "latestVersionName": "1.0",
+  "apkUrl": "https://github.com/Era-Editz-17/apk-portfolio/releases/latest/download/NEXORA-release-v1.0.apk",
+  "downloadPageUrl": "https://era-editz-17.github.io/apk-portfolio/",
+  "githubRepoUrl": "https://github.com/Era-Editz-17/apk-portfolio",
+  "releaseNotes": "Initial release of NEXORA (THINK. SOLVE. MASTER.). Multi-model Gemini support, offline KaTeX Sinhala rendering, and SVG diagrams.",
+  "publishedDate": "2026-11-16",
+  "author": "Era_editz_17"
+}
