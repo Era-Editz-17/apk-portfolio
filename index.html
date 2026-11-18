@@ -26,7 +26,6 @@
         <a href="#about">About</a>
         <a href="#apps">NEXORA</a>
         <a href="web/" target="_blank" style="color:var(--primary); font-weight:700;">🌐 Web App</a>
-        <a href="#support">Support</a>
       </nav>
     </div>
   </header>
@@ -137,51 +136,6 @@
       </div>
     </section>
 
-    <!-- Monetization & Support Section -->
-    <section id="support" class="section support-section">
-      <div class="container">
-        <div class="support-card">
-          <div class="support-icon">☕</div>
-          <h2>Support Independent Development</h2>
-          <p>
-            All my apps are free of annoying subscriptions. If you find my tools useful, you can support further development, server costs, and new features!
-          </p>
-
-          <div class="support-buttons">
-            <!-- Buy Me A Coffee Button -->
-            <a href="https://buymeacoffee.com/yourusername" target="_blank" rel="noopener noreferrer" class="btn btn-bmac">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.216 6.415l-.132-.666c-.119-.597-.388-1.156-.78-1.62-.48-.567-1.134-.908-1.842-.96-.448-.033-.902-.008-1.349.074l-9.026 1.66c-.66.12-1.272.435-1.77.912-.497.478-.838 1.092-.988 1.777l-.92 4.195c-.32 1.458.12 2.973 1.176 4.048.888.903 2.11 1.42 3.376 1.42h.384l.64 3.208c.119.598.388 1.157.78 1.621.48.567 1.134.908 1.842.96.155.012.31.018.465.018.736 0 1.457-.14 2.13-.414l5.056-2.062c.983-.4 1.77-1.15 2.215-2.113.446-.963.5-2.054.15-3.076l-1.42-4.175c.49-.18.94-.46 1.32-.82.498-.478.838-1.092.988-1.777zm-3.06 6.947c.21.61.178 1.267-.09 1.844-.268.577-.738 1.026-1.328 1.267l-5.056 2.063c-.404.164-.836.248-1.278.248-.093 0-.186-.004-.28-.01-.424-.032-.816-.237-1.104-.576-.236-.279-.398-.614-.469-.972l-.666-3.34h3.693c.552 0 1-.448 1-1s-.448-1-1-1H9.55l-.33-1.652h5.12c.553 0 1-.448 1-1s-.447-1-1-1h-5.52l-.33-1.652 8.784-1.616c.268-.05.54-.065.81-.044.425.032.817.237 1.105.576.235.28.397.615.468.973l.92 4.195c.09.412-.115 1.32-.82 1.844z"/></svg>
-              <span>Buy Me a Coffee</span>
-            </a>
-
-            <!-- Ko-fi or PayPal Link -->
-            <a href="https://ko-fi.com/yourusername" target="_blank" rel="noopener noreferrer" class="btn btn-kofi">
-              <span>☕ Support on Ko-fi</span>
-            </a>
-
-            <!-- Crypto Tip Dialog Trigger -->
-            <button id="cryptoTipBtn" class="btn btn-outline">
-              <span>🪙 Crypto Tip</span>
-            </button>
-          </div>
-
-          <!-- Crypto Wallet Modal / Drawer (Hidden by default) -->
-          <div id="cryptoModal" class="crypto-box hidden">
-            <h4>Cryptocurrency Tip Addresses</h4>
-            <div class="crypto-address-item">
-              <span class="crypto-coin">USDT (TRC20 / BSC):</span>
-              <code class="wallet-code" id="usdtAddress">0xYourTetherWalletAddressHere</code>
-              <button class="copy-btn" onclick="copyAddress('usdtAddress')">Copy</button>
-            </div>
-            <div class="crypto-address-item">
-              <span class="crypto-coin">Bitcoin (BTC):</span>
-              <code class="wallet-code" id="btcAddress">bc1qYourBitcoinWalletAddressHere</code>
-              <button class="copy-btn" onclick="copyAddress('btcAddress')">Copy</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- Footer -->
