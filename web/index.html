@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="NEXORA" />
+  <meta name="theme-color" content="#0B1324" />
+  <title>NEXORA — THINK. SOLVE. MASTER.</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./assets/icon-512.png" />
+  <link rel="icon" type="image/png" href="./assets/icon-192.png" />
+  <link rel="stylesheet" href="./assets/katex/katex.min.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./assets/katex/katex.min.js"></script>
+  <script defer src="./assets/katex/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="aurora-bg">
+    <div class="aurora-orb orb-1"></div>
+    <div class="aurora-orb orb-2"></div>
+    <div class="aurora-orb orb-3"></div>
+  </div>
+
+  <div class="app-shell">
+    <!-- 1. AUTH SCREEN -->
+    <section id="view-auth" class="scroll-screen center-screen">
+      <div class="card-container">
+        <div class="glass-elevated auth-card">
+          <img src="./assets/icon-512.png" alt="NEXORA Prism" class="emblem" />
+          <h1 class="brand-title">NEXORA</h1>
+          <div class="brand-tagline">THINK. SOLVE. MASTER. • Built by Era_editz</div>
+          <div class="brand-subjects">COMBINED MATHEMATICS • PHYSICS • CHEMISTRY.</div>
+          <p class="muted-copy" style="margin-top: 12px;">
+            Apple Liquid Glass AI studio powered by your personal free-tier Gemini API key,
+            Sinhala + LaTeX math rendering, interactive STEM diagrams &amp; Cloud sync.
+          </p>
+          <div class="pill-row">
+            <span class="glass-pill feature-pill">Gemini 4 Hydrogen &amp; 3.8 Flash</span>
+            <span class="glass-pill feature-pill">Sinhala LaTeX</span>
+            <span class="glass-pill feature-pill">STEM Diagrams</span>
+            <span class="glass-pill feature-pill">iOS Safari PWA</span>
+          </div>
+          <button id="btn-google-signin" class="btn-primary">Sign in with Google (Cloud Sync)</button>
+          <button id="btn-local-mode" class="btn-text" style="margin-top: 10px;">Continue in Device-Only Mode (No Sign-In)</button>
+          <p id="auth-error" class="muted-copy hidden" style="color: var(--danger); margin-top: 10px;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. POST-SIGNUP API KEY SETUP & TUTORIAL SCREEN -->
+    <section id="view-setup" class="scroll-screen hidden">
+      <div class="card-container">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <button id="btn-setup-back" class="glass-pill btn-secondary hidden">← Back to Chat</button>
+          <strong style="font-size:1rem;">NEXORA • API Key Setup</strong>
+          <button id="btn-setup-signout" class="btn-text" style="color:var(--text-secondary);">Sign Out</button>
+        </div>
+
+        <div class="glass-elevated setup-card">
+          <h2 style="margin:0; font-size:1.25rem;">Connect Your Gemini API Key</h2>
+          <p id="setup-user-subtitle" class="muted-copy" style="margin:0;">Free tier — no credit card required.</p>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <input id="input-setup-key" type="password" class="input-box mono" placeholder="Paste Gemini API Key (AIza...)" />
+            <button id="btn-paste-key" class="icon-btn" title="Paste from clipboard">📋</button>
+            <button id="btn-toggle-key-vis" class="icon-btn" title="Show/Hide key">👁</button>
+          </div>
+          <p id="setup-status" class="muted-copy hidden" style="margin:0;"></p>
+          <button id="btn-verify-continue" class="btn-primary">Verify &amp; Enter NEXORA</button>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-decoration:none; display:inline-flex; align-items:center;">
+              Get Free API Key ↗
+            </a>
+            <button id="btn-skip-setup" class="btn-text" style="color:var(--text-secondary);">Skip for now</button>
+          </div>
+        </div>
+
+        <!-- Interactive 24s Video Walkthrough -->
+        <div class="glass-elevated setup-card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong style="font-size:1rem;">Interactive Video Walkthrough</strong>
+              <div id="tutorial-time-label" class="muted-copy" style="font-size:0.78rem;">0:00 – 0:06</div>
+            </div>
+            <a href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener noreferrer" class="btn-text" style="text-decoration:none;">Official Guide</a>
+          </div>
+          <div class="video-viewport">
+            <div class="video-url-bar">
+              <span id="tutorial-url" class="mono" style="color:#93c5fd;">aistudio.google.com/apikey</span>
+              <span style="color:#34d399; font-weight:700;">FREE TIER</span>
+            </div>
+            <div id="tutorial-stage" class="video-stage"></div>
+            <div id="tutorial-caption" style="font-size:0.82rem; opacity:0.9;">Visit aistudio.google.com/apikey</div>
+          </div>
+          <div class="progress-track"><div id="tutorial-progress" class="progress-fill" style="width:0%;"></div></div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:8px;">
+              <button id="btn-tutorial-play" class="btn-secondary" style="padding:6px 12px; min-height:36px;">Pause</button>
+              <button id="btn-tutorial-replay" class="btn-secondary" style="padding:6px 12px; min-height:36px;">Replay</button>
+            </div>
+            <div style="display:flex; gap:6px;" id="tutorial-step-dots"></div>
+          </div>
+        </div>
+
+        <!-- Written Step-by-Step Instructions -->
+        <div class="glass setup-card">
+          <strong style="font-size:1rem;">Step-by-Step Instructions</strong>
+          <div class="step-row">
+            <div class="step-badge">1</div>
+            <div><strong>Open Google AI Studio</strong><div class="muted-copy">Tap "Get Free API Key" above to open aistudio.google.com/apikey in Safari and sign in.</div></div>
+          </div>
+          <div class="step-row">
+            <div class="step-badge">2</div>
+            <div><strong>Create a Free API Key</strong><div class="muted-copy">Tap "+ Create API key" → "Create API key in new project" (Free Tier, no billing needed).</div></div>
+          </div>
+          <div class="step-row">
+            <div class="step-badge">3</div>
+            <div><strong>Copy, Paste &amp; Verify</strong><div class="muted-copy">Copy the AIza... key, paste it above, and tap "Verify &amp; Enter NEXORA".</div></div>
+          </div>
+          <div class="step-row">
+            <div class="step-badge">4</div>
+            <div><strong>Add to iPhone Home Screen</strong><div class="muted-copy">In Safari, tap Share (□↑) → "Add to Home Screen" for full-screen Liquid Glass app mode.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MAIN CHAT WORKSPACE -->
+    <section id="view-chat" class="chat-layout hidden">
+      <div id="drawer-backdrop" class="drawer-backdrop hidden"></div>
+      <aside id="sidebar" class="glass sidebar">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:1.1rem;">NEXORA Chats</strong>
+          <button id="btn-new-chat" class="glass-pill" style="padding:7px 14px; font-weight:700; color:var(--accent); cursor:pointer;">+ New</button>
+        </div>
+        <input id="input-history-search" type="search" class="input-box" placeholder="Search conversations..." />
+        <div id="conv-list" class="conv-list"></div>
+        <button id="btn-drawer-settings" class="btn-secondary" style="width:100%;">⚙ API Key &amp; Settings</button>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button id="btn-open-drawer" class="icon-btn" title="History">☰</button>
+          <button id="btn-model-picker" class="glass-pill model-pill">
+            <span>✦</span>
+            <span id="active-model-label">Gemini 4 Hydrogen</span>
+            <span>▾</span>
+          </button>
+          <div style="display:flex; gap:8px;">
+            <button id="btn-top-new" class="icon-btn" title="New Chat">＋</button>
+            <button id="btn-top-settings" class="icon-btn" title="Settings">⚙</button>
+          </div>
+        </header>
+
+        <div id="ios-install-banner" class="glass ios-install-banner hidden">
+          <span>📱 Tip: Tap Safari <strong>Share (□↑) → Add to Home Screen</strong> for full-screen iOS app mode.</span>
+          <button id="btn-dismiss-ios-banner" class="btn-text" style="padding:4px 8px;">✕</button>
+        </div>
+
+        <div id="missing-key-banner" class="glass ios-install-banner hidden" style="cursor:pointer; border-color:var(--warning);">
+          <span>🔑 <strong>Connect Your Gemini API Key</strong> — tap for setup guide &amp; tutorial.</span>
+          <span style="color:var(--accent); font-weight:700;">Setup →</span>
+        </div>
+
+        <div id="messages-scroll" class="messages-scroll">
+          <div id="messages-inner" class="messages-inner"></div>
+        </div>
+
+        <div class="composer-wrap">
+          <div class="glass-elevated composer-card">
+            <div id="attachment-strip" style="display:flex; gap:8px; overflow-x:auto;" class="hidden"></div>
+            <div class="composer-row">
+              <label for="file-input" class="icon-btn" title="Attach image or PDF" style="cursor:pointer;">＋</label>
+              <input id="file-input" type="file" accept="image/*,application/pdf,text/*" multiple class="hidden" />
+              <textarea id="composer-input" class="composer-textarea" rows="1" placeholder="Ask NEXORA — Maths, Physics, Chemistry..."></textarea>
+              <button id="btn-voice" class="icon-btn" title="Voice input">🎙</button>
+              <button id="btn-send" class="send-btn" title="Send">↑</button>
+            </div>
+            <div class="cap-row">
+              <button id="pill-thinking" class="cap-pill active">🧠 Thinking</button>
+              <button id="pill-search" class="cap-pill active">🌐 Google Search</button>
+              <button id="pill-theme" class="cap-pill">✨ Theme: Adaptive</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <!-- MODEL PICKER MODAL -->
+  <div id="modal-models" class="modal-backdrop hidden">
+    <div class="glass-elevated modal-sheet">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <strong style="font-size:1.15rem;">Usable Free-Tier Models</strong>
+          <div class="muted-copy" style="font-size:0.78rem;">All active quota models enabled • 0/0 models hidden</div>
+        </div>
+        <button id="btn-close-models" class="icon-btn">✕</button>
+      </div>
+      <div id="models-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+    </div>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div id="modal-settings" class="modal-backdrop hidden">
+    <div class="glass-elevated modal-sheet">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong style="font-size:1.15rem;">NEXORA Settings</strong>
+        <button id="btn-close-settings" class="icon-btn">✕</button>
+      </div>
+      <label style="font-size:0.85rem; font-weight:700;">Gemini API Key</label>
+      <input id="input-settings-key" type="password" class="input-box mono" placeholder="AIza..." />
+      <div style="display:flex; gap:8px;">
+        <button id="btn-save-settings-key" class="btn-primary" style="flex:1;">Save &amp; Verify Key</button>
+        <button id="btn-open-guide-from-settings" class="btn-secondary">Setup Guide &amp; Video</button>
+      </div>
+      <p id="settings-key-status" class="muted-copy hidden" style="margin:0;"></p>
+      <label style="font-size:0.85rem; font-weight:700; margin-top:6px;">Custom System Instructions</label>
+      <textarea id="input-system-prompt" class="input-box" rows="3" placeholder="e.g., Explain step-by-step in Sinhala with LaTeX..."></textarea>
+      <button id="btn-save-system" class="btn-secondary">Save Instructions</button>
+
+      <!-- Developer Portfolio Website Link -->
+      <div class="glass" style="padding:12px 14px; border-radius:16px; margin-top:8px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:0.88rem; font-weight:700; color:var(--text-primary);">Era_editz Portfolio</div>
+          <div class="muted-copy" style="font-size:0.75rem;">Download APK &amp; Developer updates</div>
+        </div>
+        <a href="https://era-editz-17.github.io/apk-portfolio/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-decoration:none; padding:6px 12px; font-size:0.8rem; display:inline-flex; align-items:center; gap:4px;">
+          Visit Site ↗
+        </a>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+        <span id="settings-account-label" class="muted-copy">Local Mode</span>
+        <button id="btn-sign-out" class="btn-text" style="color:var(--danger);">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN STEM DIAGRAM MODAL -->
+  <div id="modal-svg" class="modal-backdrop hidden" style="align-items:center;">
+    <div class="glass-elevated modal-sheet" style="max-width:920px; max-height:90dvh;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>Interactive STEM Diagram</strong>
+        <div style="display:flex; gap:8px;">
+          <button id="btn-svg-zoom-in" class="icon-btn">+</button>
+          <button id="btn-svg-zoom-out" class="icon-btn">−</button>
+          <button id="btn-svg-reset" class="icon-btn">⟲</button>
+          <button id="btn-svg-close" class="icon-btn">✕</button>
+        </div>
+      </div>
+      <div id="svg-fullscreen-stage" style="overflow:auto; border-radius:18px; background:var(--svg-bg); padding:16px; min-height:280px; text-align:center;"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="app-toast" class="toast-notice"></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
